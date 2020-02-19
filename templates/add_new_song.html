@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="form">
+
+    <form action="{{ form_url }}"
+          method="post">
+        <label for="title">Title</label><br>
+        <input type="text" name="title" id="title" width="200" placeholder='Title of the song' value="{{title}}"><br>
+
+        <label for="length">Length</label><br>
+        <input type="number" step="0.01" name="length" id="length" width="100" placeholder='Length in min' value="{{length}}"><br>
+
+        <label for="performer">Performer</label><br>
+        <input type="text" name="performer" id="performer" width="200" placeholder='Sung by...' value="{{performer}}"><br>
+
+        <br>
+
+        <label for="lyrics">Lyrics</label><br>
+        <input type="url" name="lyrics" id="lyrics" width="200" placeholder='Link to lyrics' value="{{lyrics}}"><br>
+
+        <label for="video">Video ( Youtube link)</label><br>
+        <input type="url" name="video" id="video" width="200" placeholder='Youtube link' value="{{video}}"><br>
+        <br>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+{% endblock %}
+
+{# spaces#}

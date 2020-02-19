@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block content %}
+<div id="sidebar">
+    {% if session['username'] %}
+    <div class="menu_option">
+        <a href="{{ url_for('add_new_musical') }}">Add new musical</a></div>
+    {% endif %}
+    <div class="sort_form">
+    <form action="/sort_all" method="post">
+        <label for="condition">Sort by </label><br><br>
+        <select id="condition" name="condition">
+            <option value="title">title</option>
+            <option value="year">year</option>
+            <option value="book">book's author</option>
+            <option value="music">music's author</option>
+            <option value="genre">genre</option>
+        </select>
+            <button type="submit">Submit</button>
+    </form>
+    </div>
+</div>
+<div id="content">
+    <table>
+        <thead>
+        <tr>
+            <th scope="col"> Title</th>
+            <th scope="col"> Year</th>
+            <th scope="col"> Book</th>
+            <th scope="col"> Music</th>
+            <th scope="col"> Genre</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% for musical in musicals %}
+        <tr>
+            <td><a href= {{url_for('show_songs_from_musical', musical_title = musical.title) }}>{{musical.title}}</a></td>
+            <td>{{musical.year}}</td>
+            <td>{{musical.book}}</td>
+            <td>{{musical.music}}</td>
+            <td>{{musical.genre}}</td>
+            {% endfor%}
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}

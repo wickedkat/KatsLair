@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="form">
+
+<form action="{{ form_url }}"
+      method="post">
+    <label for="title">Title</label><br>
+    <input type="text" name="title" id="title" cols="120" placeholder='Title of the show' value="{{title}}"><br>
+
+    <label for="year">Year</label><br>
+    <input type="number" name="year" id="year" cols="20" placeholder='Opened in' value="{{year}}" min="1900" max="2020"  step="1"><br>
+
+    <label for="book">Book by</label><br>
+    <input type="text" name="book" id="book" cols="120" placeholder='Author' value="{{book}}"><br>
+
+    <label for="music">Music by</label><br>
+    <input type="text" name="music" id="music" cols="120" placeholder='Composer' value="{{music}}"><br>
+
+    <label for="genre">Genre</label><br>
+    <select name="genre" id="genre">
+        {% for genre in genres %}
+        <option value="{{ genre }}">{{ genre }}</option>
+        {% endfor %}
+    </select>
+    <br>
+
+    <button type="submit">Submit</button>
+</form>
+</div>
+
+{% endblock %}
+
+{# spaces#}

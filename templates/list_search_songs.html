@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div id="sidebar">
+    {% if session['username'] %}
+    <div class="menu_option">
+        <a href="/songs_from_musical/add_song/{{musical_title}}">Add song</a></div>
+    {% endif %}
+    <div class="menu_option"><a href="#">Sort</a></div>
+</div>
+<div id="content">
+    <table>
+        <thead>
+        <tr>
+            <th scope="col"> Title</th>
+            <th scope="col"> Song from</th>
+            <th scope="col"> Sung by</th>
+            <th scope="col"> Book by</th>
+            <th scope="col"> Music by</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% for song in songs %}
+        <tr>
+            <td><a href= {{url_for('show_song_details', song_id = song.id) }}>{{song.title}}</a></td>
+            <td>{{song.show}}</td>
+            <td>{{song.performer}}</td>
+            <td>{{song.book}}</td>
+            <td>{{song.music}}</td>
+            {% endfor%}
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+
+{% endblock %}

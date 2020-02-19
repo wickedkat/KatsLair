@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="form">
+
+    <form action="{{form_url}}" , method="post">
+
+        <label for="tag">Gender</label><br>
+        {% for tag in tags1 %}
+        <input type="radio" id="tag" name="tag" value="{{ tag }}">{{ tag }}
+        {% endfor %}
+        <br><br>
+        <label for="tag">Number of performers</label><br>
+        {% for tag in tags2 %}
+        <input type="radio" id="tag" name="tag" value="{{ tag }}">{{ tag }}
+        {% endfor %}
+        <br><br>
+        <label for="tag">Song type</label><br>
+        {% for tag in tags3 %}
+        <input type="radio" id="tag" name="tag" value="{{ tag }}">{{ tag }}
+        {% endfor %}
+        <br><br>
+        <label for="tag">Song character</label><br>
+        {% for tag in tags4 %}
+        <input type="radio" id="tag" name="tag" value="{{ tag }}">{{ tag }}
+        {% endfor %}
+        <br><br>
+        <label for="tag">Background</label><br>
+        {% for tag in tags5 %}
+        <input type="radio" id="tag" name="tag" value="{{ tag }}">{{ tag }}
+        {% endfor %}
+        <br><br>
+        <label for="tag">Voice type</label><br>
+        {% for tag in tags6 %}
+        <input type="radio" id="tag" name="tag" value="{{ tag }}">{{ tag }}
+        {% endfor %}
+        <br><br>
+        <label for="tag">Performer characteristics</label><br>
+        {% for tag in tags7 %}
+        <input type="radio" id="tag" name="tag" value="{{ tag }}">{{ tag }}
+        {% endfor %}
+        <br><br><br>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+
+{% endblock %}
+
+{# spaces#}

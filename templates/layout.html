@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kat's Lair v.1.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Yatra+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <script type="text/javascript" src="{{ url_for('static', filename='javascript.js') }}" defer></script>
+</head>
+<body>
+<div id="container">
+    <div id="navbar">
+        <div id="logo">
+            <a href="/"><img src="/static/icons/Katslair_blackpurple.png" height="120" width="120"></a>
+
+        </div>
+        <div id="pagename">Kat's Lair</div>
+        <div id="login">
+            {% if session['username'] %}
+                <div id="hello">
+                    <p>Hello <em>{{ session['username'] }}</em>
+                        <button><a href="/logout"> Log out</a></button></p></div>
+                {% endif %}
+
+            {% if not session['username'] %}
+            <form action="/login" , method="post">
+                <div class="login_option"><input type="text" name="username" id="username" placeholder='username'
+                                                 value="{{username}}"></div>
+                <div class="login_option"><input type="password" name="password" id="password" placeholder='password'
+                                                 value="{{password}}"></div>
+                <div class="login_option">
+                    <button type="submit">Log in</button>
+                </div>
+                <div class="login_option">
+                    <button><a href="/register"> Register</a></button>
+                </div>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+    <div style="clear:both"></div>
+    <div id="menu-bar">
+        <div class="bar_search">
+            <form action="/search"
+                  method="post">
+                <input type="text" name="search" id="search" cols="120" placeholder='Search the website'
+                       value="{{search}}">
+
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <!--wrzucic blok zamiast zmiennej-->
+        <!--dokumentacja dot bloków w jinja-->
+        {{page_title}}
+    </div>
+    <div class="content-wrapper">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class=flashes>
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+        {% block content %} {% endblock %}
+    </div>
+    <div id="footer"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="form">
+
+    <form action="{{ form_url }}"
+          method="post">
+        <label for="username">Username</label><br>
+        <input type="text" name="username" id="username" cols="120" placeholder='Pick your username' value="{{username}}"><br>
+
+        <label for="password">Password</label><br>
+        <input type="password" name="password" id="password" cols="120" placeholder='Pick a password' value="{{password}}"><br>
+
+        <br>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+{% endblock %}
+
+{# spaces#}

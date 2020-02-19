@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block content %}
+<div id="sidebar">
+    {% if session['username'] %}
+    <div class="menu_option">
+        <a href="/tag_song/{{song.id}}">Tag song</a></div>
+    <div class="menu_option"><a href="#">Add to your list</a></div>
+    {% endif %}
+    <div class="menu_option">
+        <a href='/songs_from_musical/{{song.show}}'>Back to list of songs</a></div>
+</div>
+
+<div id="content">
+    <table>
+        <thead>
+        <tr>
+            <th scope="col"> Title</th>
+            <th scope="col"> Length</th>
+            <th scope="col"> Sung by</th>
+            <th scope="col"> Song from</th>
+            <th scope="col"> Lyrics</th>
+            <th scope="col"> Sheet music</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><a href={{url_for('show_song_details', song_id=song.id) }}>{{song.title}}</a></td>
+            <td>{{song.length}}</td>
+            <td>{{song.performer}}</td>
+            <td>{{song.show}}</td>
+            {% if song.lyrics %}
+            <td style="cursor:pointer; padding-left: 30px"><img src="/static/icons/lyrics.png" height="16px" width="16px"
+                                                                onclick="showLyrics()">
+            </td>
+            {% elif not song.lyrics %}
+            <td></td>
+            {% endif %}
+            {% if song.sheet_music %}
+            <td style="padding-left: 70px"><a href={{song.sheetmusic}}><img src="/static/icons/sheet_music.png" height="16px"
+                                                                            width="18px"></a></td>
+            {% elif not song.sheet_music %}
+            <td></td>
+            {% endif %}
+        </tr>
+        </tbody>
+    </table>
+    <div id="song_details">
+        <div id="song_tags">
+            {% for tag in tags %}
+            <button>{{tag}}</button>
+            {% endfor %}
+        </div>
+        {% if song.video %}
+        <div id="song_video">
+            <iframe width="400" height="225" src={{song.video}} frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+        {% endif %}
+        <div style="clear: both"></div>
+        <iframe class="lyrics_frame hide" src={{song.lyrics}}></iframe>
+
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div id="sidebar">
+    {% if session['username'] %}
+    <div class="menu_option">
+        <a href="/songs_from_musical/add_song/{{musical_title}}">Add song</a></div>
+    {% endif %}
+    <div class="sort_form">
+        <form action="/sort_songs/{{musical_title}}" method="post">
+            <label for="value">Sort by </label><br><br>
+            <select id="value" name="value">
+                <option value="title">title</option>
+                <option value="length">length</option>
+                <option value="performer">character</option>
+            </select><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+<div id="content">
+    <table>
+        <thead>
+        <tr>
+            <th scope="col"> Title</th>
+            <th scope="col"> Length</th>
+            <th scope="col"> Sung by</th>
+            <th scope="col"> Song from</th>
+            {% if session['username'] %}
+            <th scope="col"> Edit</th>
+            <th scope="col"> Del </th>
+            {% endif %}
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% for song in songs %}
+        <tr>
+            <td><a href= {{url_for('show_song_details', song_id = song.id) }}>{{song.title}}</a></td>
+            <td>{{song.length}}</td>
+            <td>{{song.performer}}</td>
+            <td>{{song.show}}</td>
+            {% if session['username'] %}
+            <td><a href="/songs_from_musical/edit/{{song.id}}"><img src="/static/icons/edit.png" height="14px" width="14px" align="center" ></a></td>
+            <td><a href="/songs_from_musical/delete/{{song.id}}"><img src="/static/icons/delete.png" height="14px" width="14px" align="center"></a></td>
+            {% endif %}
+            {% endfor%}
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+
+{% endblock %}
